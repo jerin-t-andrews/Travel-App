@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Box } from "@mui/material";
 import Navbar from "./navbar";
+import { Box } from "@mui/joy";
+import AspectRatio from "@mui/joy";
 
 export default function Home() {
   return (
@@ -9,8 +10,7 @@ export default function Home() {
       <img
         style={{
           maxWidth: "100%",
-          maxHeight: "100%",
-          marginTop: "-40px"
+          marginTop: "-50px"
         }}
         src="home_page_img.jpeg"
         alt=""
