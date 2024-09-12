@@ -32,3 +32,20 @@ a {
     color-scheme: dark;
   }
 }
+
+.signup-button {
+  background-color: #00C0A6;
+  position: absolute;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px; /* Makes the button rounded */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #009980; /* Darker shade for hover effect */
+}
+
