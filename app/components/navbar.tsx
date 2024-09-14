@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Navbar() {
     return(
-        <Box display="flex" position="fixed" width="100vw" justifyContent="space-between" alignItems="center" bgcolor="white" px={2} py={0} height="60px">
+        <Box display="flex" position="fixed" width="100vw" justifyContent="space-between" alignItems="center" bgcolor="#f5f5f5" px={2} py={0} height="60px">
             <Box flexShrink={0} mt={0.5}>
                 <img
                     src="TravelLogo.svg"

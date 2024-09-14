@@ -1,9 +1,8 @@
 import Image from "next/image";
-import Navbar from "./navbar";
+import Navbar from "./components/navbar";
 import { Box, Typography, Button} from "@mui/joy";
-import AspectRatio from "@mui/joy";
 import Link from "next/link";
-import Login from "./sign-in/page";
+
 
 
 export default function Home() {
