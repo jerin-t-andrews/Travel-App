@@ -1,8 +1,9 @@
 import { Box, Button, Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy"
+import Link from "next/link"
 
 export default function Navbar() {
     return(
-        <Box display="flex" position="fixed" width="100vw" justifyContent="space-between" alignItems="center" bgcolor="white" px={2} py={0} height="60px">
+        <Box display="flex" position="fixed" width="100vw" justifyContent="space-between" alignItems="center" bgcolor="#f5f5f5" px={2} py={0} height="60px" zIndex={99}>
             <Box flexShrink={0} mt={0.5}>
                 <img
                     src="TravelLogo.svg"
@@ -27,8 +28,12 @@ export default function Navbar() {
                 </Dropdown>
             </Box>
             <Box display="flex" flexShrink={1} ml={2}>
-                <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Login</Button>
-                <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign Up</Button>
+                <Link href="/sign-in">
+                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign In</Button>
+                </Link>
+                <Link href="/sign-up">
+                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign Up</Button>
+                </Link>
             </Box>
         </Box>
     )
