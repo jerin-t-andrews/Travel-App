@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import { Box, Typography, Button} from "@mui/joy";
 import AspectRatio from "@mui/joy";
 import Link from "next/link";
-import Login from "./login";
+import Login from "./sign-in/page";
 
 
 export default function Home() {
@@ -22,7 +22,8 @@ export default function Home() {
         <Typography level="h1" sx={{color: "#F7F8FA", ml: "-600px", mt: "-150px"}} position="absolute">Travel With Us</Typography>
         <Typography level="title-lg" sx={{color: "#F7F8FA", ml: "-440px", mt: "-50px"}} position="absolute">Say hello to the world with our Package Plans!</Typography>
         {/* <button className="signup-button">Sign Up for Free</button> */}
-        <Button sx={{
+        
+        <Button component={Link} href="/sign-up" sx={{
           bgcolor: "#00C0A6",
           position: "absolute",
           color: "white",

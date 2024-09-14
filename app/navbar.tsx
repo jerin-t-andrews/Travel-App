@@ -1,4 +1,5 @@
 import { Box, Button, Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy"
+import Link from "next/link"
 
 export default function Navbar() {
     return(
@@ -27,8 +28,12 @@ export default function Navbar() {
                 </Dropdown>
             </Box>
             <Box display="flex" flexShrink={1} ml={2}>
-                <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Login</Button>
-                <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign Up</Button>
+                <Link href="/sign-in">
+                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign In</Button>
+                </Link>
+                <Link href="/sign-up">
+                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign Up</Button>
+                </Link>
             </Box>
         </Box>
     )
