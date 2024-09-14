@@ -18,28 +18,43 @@ export default function Home() {
           src="home_page_img.jpeg"
           alt=""
         />
-        <Typography level="h1" sx={{color: "#F7F8FA", ml: "-600px", mt: "-150px"}} position="absolute">Travel With Us</Typography>
-        <Typography level="title-lg" sx={{color: "#F7F8FA", ml: "-440px", mt: "-50px"}} position="absolute">Say hello to the world with our Package Plans!</Typography>
-        {/* <button className="signup-button">Sign Up for Free</button> */}
+
+        <Box width="30vw" position="absolute" display="flex" flexDirection="column" justifyContent="center" alignItems="left" gap={0.5} zIndex={1} mr={80} mb={15}>
+          <Typography level="h1" sx={{color: "#f5f5f5", fontSize: '3.5rem', fontWeight: "bold"}}>
+            Travel With Us
+          </Typography>
+          <Typography level="title-lg" ml={0.5} mb={3} sx={{color: "#f5f5f5",}}>
+            Say hello to the world with our Package Plans!
+          </Typography>
         
-        <Button component={Link} href="/sign-up" sx={{
-          bgcolor: "#00C0A6",
-          position: "absolute",
-          color: "white",
-          padding: "10px 20px",
-          border: "none",
-          borderRadius: "25px",  
-          fontSize: "16px",      
-          cursor: "pointer",
-          marginTop: "80px",
-          marginLeft: "-670px",
-          transition: "background-color 0.3s ease",
-          '&:hover': {
-            bgcolor: "#009980",
-          },
-        }}>Sign Up for Free</Button>
+          <Button component={Link} href="/sign-up" sx={{
+            bgcolor: "#00C0A6",
+            width: "45%",
+            color: "white",
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "25px",  
+            fontSize: "16px",      
+            cursor: "pointer",
+            transition: "background-color 0.3s ease",
+            '&:hover': {
+              bgcolor: "#009980",
+            },
+          }}>Sign Up for Free</Button>
+        </Box>
       </Box>
 
+      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
+        <Typography level="h2">Popular Packages</Typography>
+      </Box>
+
+      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
+        <Typography level="h2">User Reviews</Typography>
+      </Box>
+
+      <Box display="flex" width="100vw" height="40vh" bgcolor="#f5f5f5">
+        <Typography level="h2">Footer</Typography>
+      </Box>
     </Box>
   );
 }
