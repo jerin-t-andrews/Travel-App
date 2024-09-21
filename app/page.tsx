@@ -1,60 +1,49 @@
 import Image from "next/image";
+
 import Navbar from "./components/navbar";
-import { Box, Typography, Button} from "@mui/joy";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 
 
 export default function Home() {
   return (
-    <Box>
+    <div>
       <Navbar/>
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <div className="flex justify-center items-center">
         <img
-          style={{
-            maxWidth: "100%",
-            marginTop: "-50px"
-          }}
+          className="max-w-full mt-[-50px]" // Tailwind for max-width and margin-top
           src="home_page_img.jpeg"
           alt=""
         />
 
-        <Box width="30vw" position="absolute" display="flex" flexDirection="column" justifyContent="center" alignItems="left" gap={0.5} zIndex={1} mr={80} mb={15}>
-          <Typography level="h1" sx={{color: "#f5f5f5", fontSize: '3.5rem', fontWeight: "bold"}}>
+        <div className="absolute flex flex-col justify-center items-start w-[30vw] z-10 mr-[35vw] mb-[16vh]">
+          <h1 className="text-[#f5f5f5] text-[3.5rem] font-bold">
             Travel With Us
-          </Typography>
-          <Typography level="title-lg" ml={0.5} mb={3} sx={{color: "#f5f5f5",}}>
+          </h1>
+          <p className="font-medium ml-2 mb-3 text-[#f5f5f5] text-xl">
             Say hello to the world with our Package Plans!
-          </Typography>
+          </p>
         
-          <Button component={Link} href="/sign-up" sx={{
-            bgcolor: "#00C0A6",
-            width: "45%",
-            color: "white",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "25px",  
-            fontSize: "16px",      
-            cursor: "pointer",
-            transition: "background-color 0.3s ease",
-            '&:hover': {
-              bgcolor: "#009980",
-            },
-          }}>Sign Up for Free</Button>
-        </Box>
-      </Box>
+          <Button asChild className="flex bg-[#00C0A6] w-[40%] text-white py-2 px-5 rounded-[25px] text-base hover:bg-[#009980]">
+            <Link href="/sign-up">
+              Sign Up for Free
+            </Link>
+          </Button>
+        </div>
+      </div>
 
-      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
-        <Typography level="h2">Popular Packages</Typography>
-      </Box>
+      <div className="flex w-full h-[50vh] bg-[#f5f5f5]">
+        <h2 className="text-2xl font-semibold">Popular Packages</h2>
+      </div>
 
-      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
-        <Typography level="h2">User Reviews</Typography>
-      </Box>
+      <div className="flex w-full h-[50vh] bg-[#f5f5f5]">
+        <h2 className="text-2xl font-semibold">User Reviews</h2>
+      </div>
 
-      <Box display="flex" width="100vw" height="40vh" bgcolor="#f5f5f5">
-        <Typography level="h2">Footer</Typography>
-      </Box>
-    </Box>
+      <div className="flex w-full h-[40vh] bg-[#f5f5f5]">
+        <h2 className="text-2xl font-semibold">Footer</h2>
+      </div>
+    </div>
   );
 }

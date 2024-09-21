@@ -1,99 +1,51 @@
-import { Box, Button, Input, Typography } from "@mui/joy";
+'use client'
+// import { Box, Button, Input, Typography } from "@mui/joy";
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
 
 export default function Login() {
     return(
-        <Box width="100vw" height="100vh" bgcolor="#FAF9F6" display="flex">
-            <Box width="60vw" height="100vh" sx={{
-                background: 'linear-gradient(135deg, #014000, #f5f5f5)', // Initial gradient
-                backgroundSize: '400% 400%', // Increased size for smooth animation
-                animation: 'moveGradient 8s ease-in-out infinite', // Gradient animation
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                '@keyframes moveGradient': {
-                    '0%': { backgroundPosition: '0% 50%' },
-                    '50%': { backgroundPosition: '100% 50%' },
-                    '100%': { backgroundPosition: '0% 50%' },
-                },
-            }}>
-            </Box>
-            <Box width="40vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={2}>
-                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" width="40vw" gap={2} mb={3} paddingBottom={4} paddingTop={2}>
-                    <Typography level="h1" mb={4.5} sx={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold',
-                            color: '#333', 
-                        }}> 
+        <div className="w-full h-screen bg-[#FAF9F6] flex">
+            <div className="w-[60vw] h-screen flex justify-center items-center bg-gradient-to-br from-[#014000] via-[#4c7041] to-[#23d5ab] animate-moveGradient"> 
+                <style jsx>{`
+                    @keyframes moveGradient {
+                        0% { background-position: 0% 50%; }
+                        50% { background-position: 100% 50%; }
+                        100% { background-position: 0% 50%; }
+                    }
+                    .animate-moveGradient {
+                        background-size: 400% 400%;
+                        animation: moveGradient 15s ease infinite;
+                    }
+                `}</style>
+            </div>
+            <div className="w-[40vw] h-screen flex flex-col justify-center items-center">
+                <Button asChild variant="outline" size="icon" className="absolute mb-[92vh] mr-[35vw]">
+                    <Link href="/" className="flex items-center"> 
+                        <ChevronLeft className="h-6 w-6"/> 
+                    </Link>
+                </Button>
+                <div className="flex flex-col justify-center items-center w-[40vw] gap-2 mb-3 pb-4 pt-2">
+                    <h1 className="mb-12 text-5xl font-bold text-[#333]"> 
                         Sign In
-                    </Typography>
+                    </h1>
                     <Input
                         placeholder="Email"
-                        size="sm"
-                        sx={{
-                            width: '50%',
-                            padding: '10px',
-                            borderRadius: '8px',
-                            backgroundColor: '#F7F7F7', // Light background for two-tone effect
-                            border: '1px solid #E0E0E0', // Light border
-                            // boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.1)', // Subtle inner shadow
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                                borderColor: '#B0B0B0', // Slightly darker border on hover
-                            },
-                            '&:focus': {
-                                borderColor: '#00aaff', // Blue border on focus
-                                boxShadow: '0 0 5px rgba(0, 170, 255, 0.5)', // Outer shadow on focus
-                                outline: 'none',
-                            },
-                        }}
+                        className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
                     />
 
                     <Input
                         placeholder="Password"
-                        size="sm"
-                        sx={{
-                            width: '50%',
-                            padding: '10px',
-                            borderRadius: '8px',
-                            backgroundColor: '#F7F7F7', // Light background for two-tone effect
-                            border: '1px solid #E0E0E0', // Light border
-                            // boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.1)', // Subtle inner shadow
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                                borderColor: '#B0B0B0', // Slightly darker border on hover
-                            },
-                            '&:focus': {
-                                borderColor: '#00aaff', // Blue border on focus
-                                boxShadow: '0 0 5px rgba(0, 170, 255, 0.5)', // Outer shadow on focus
-                                outline: 'none',
-                            },
-                        }}
+                        className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
                     />
 
-                    <Button variant="soft" color="neutral" sx={{
-                        width: '50%',
-                        padding: '10px',
-                        marginTop: 3,
-                        borderRadius: '8px',
-                        transition: 'all 0.3s ease', // Slow hover effect
-                        backgroundColor: '#e0e0e0',
-                        '&:hover': {
-                            backgroundColor: '#d0d0d0', // Slightly darker shade on hover
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Subtle shadow on hover
-                            transform: 'translateY(0px)', // Slight lift effect
-                        },
-                        '&:active': {
-                            backgroundColor: '#c0c0c0', // Darker shade when pressed
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Shadow change on press
-                            transform: 'translateY(0)', // Reset lift effect on press
-                        },
-                        '&:focus': {
-                            outline: 'none',
-                        },
-                    }}
-                    >Sign In</Button>
-                </Box>
-            </Box>
-        </Box>
+                    <Button className="w-[50%] p-2 mt-3 rounded-[8px] bg-[#e0e0e0] transition-all duration-300 hover:bg-[#d0d0d0] hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] active:bg-[#c0c0c0] active:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+                        Sign In
+                    </Button>
+                </div>
+            </div>
+        </div>
     )
 }
