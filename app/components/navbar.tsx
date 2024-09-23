@@ -1,40 +1,41 @@
-import { Box, Button, Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy"
+// import { Box, Button, Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import Link from "next/link"
 
 export default function Navbar() {
     return(
-        <Box display="flex" position="fixed" width="100vw" justifyContent="space-between" alignItems="center" bgcolor="#f5f5f5" px={2} py={0} height="60px" zIndex={99}>
-            <Box flexShrink={0} mt={0.5}>
+        <div className="fixed w-full flex justify-between items-center bg-[#FAF9F6] px-2 py-0 h-[60px] z-[99]">
+            <div className="flex-shrink-0">
                 <img
                     src="TravelLogo.svg"
-                    alt=""
-                    style={{
-                        height: "40px",
-                        objectFit: "contain",
-                    }}
+                    alt="Logo"
+                    className="h-[40px]"
                 />  
-            </Box>
-            <Box display="flex" justifyContent="center" alignItems="center" flexGrow={1} position="absolute" left="50%" sx={{ transform: "translate(-50%)"}}>
-                <Button variant="plain" color="neutral" sx={{height: "60px"}}>About</Button>
-                <Button variant="plain" color="neutral" sx={{height: "60px"}}>Trips</Button>
-                <Button variant="plain" color="neutral" sx={{height: "60px"}}>Review</Button>
-                <Dropdown>
-                    <MenuButton variant="plain" color="neutral" sx={{height: "50px"}}>More</MenuButton>
-                    <Menu variant="plain" size="sm">
-                        <MenuItem>Item 1</MenuItem>
-                        <MenuItem>Item 2</MenuItem>
-                        <MenuItem>Item 3</MenuItem>
-                    </Menu>
-                </Dropdown>
-            </Box>
-            <Box display="flex" flexShrink={1} ml={2}>
+            </div>
+            <div className="flex justify-center items-center absolute left-1/2 transform -translate-x-1/2 flex-grow">
+                <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">About</Button>
+                <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">Trips</Button>
+                <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">Review</Button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" className="bg-transparent text-neutral-700 h-[60px] px-4">More</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-white shadow-md p-2">
+                        <DropdownMenuItem>Item 1</DropdownMenuItem>
+                        <DropdownMenuItem>Item 2</DropdownMenuItem>
+                        <DropdownMenuItem>Item 3</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+            <div className="flex flex-shrink-1 ml-2">
                 <Link href="/sign-in">
-                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign In</Button>
+                    <Button className="border-neutral-700 border-[1.5px] rounded-lg text-neutral-700 mx-1 px-4 py-1">Sign In</Button>
                 </Link>
                 <Link href="/sign-up">
-                    <Button variant="outlined" color="neutral" sx={{mx: 0.4}}>Sign Up</Button>
+                    <Button className="border-neutral-700 border-[1.5px] rounded-lg text-neutral-700 mx-1 px-4 py-1">Sign Up</Button>
                 </Link>
-            </Box>
-        </Box>
+            </div>
+        </div>
     )
 }

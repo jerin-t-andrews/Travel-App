@@ -1,60 +1,104 @@
 import Image from "next/image";
+
 import Navbar from "./components/navbar";
-import { Box, Typography, Button} from "@mui/joy";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
-    <Box>
+    <div>
       <Navbar/>
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <div className="flex justify-center items-center">
         <img
-          style={{
-            maxWidth: "100%",
-            marginTop: "-50px"
-          }}
+          className="max-w-full mt-[-60px]" // Tailwind for max-width and margin-top
           src="home_page_img.jpeg"
           alt=""
         />
 
-        <Box width="30vw" position="absolute" display="flex" flexDirection="column" justifyContent="center" alignItems="left" gap={0.5} zIndex={1} mr={80} mb={15}>
-          <Typography level="h1" sx={{color: "#f5f5f5", fontSize: '3.5rem', fontWeight: "bold"}}>
+        <div className="absolute flex flex-col justify-center items-start w-[30vw] z-10 mr-[35vw] mb-[18vh]">
+          <h1 className="text-[#FAF9F6] text-[3rem] font-bold">
             Travel With Us
-          </Typography>
-          <Typography level="title-lg" ml={0.5} mb={3} sx={{color: "#f5f5f5",}}>
+          </h1>
+          <p className="font-medium ml-2 mb-3 text-[#10614e] text-xl">
             Say hello to the world with our Package Plans!
-          </Typography>
+          </p>
         
-          <Button component={Link} href="/sign-up" sx={{
-            bgcolor: "#00C0A6",
-            width: "45%",
-            color: "white",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "25px",  
-            fontSize: "16px",      
-            cursor: "pointer",
-            transition: "background-color 0.3s ease",
-            '&:hover': {
-              bgcolor: "#009980",
-            },
-          }}>Sign Up for Free</Button>
-        </Box>
-      </Box>
+          <Button asChild className="flex bg-[#00C0A6] w-[30%] h-8 text-white py-2 px-5 rounded-[25px] text-sm hover:bg-[#009980]">
+            <Link href="/sign-up">
+              Sign Up Now
+            </Link>
+          </Button>
+        </div>
+      </div>
 
-      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
-        <Typography level="h2">Popular Packages</Typography>
-      </Box>
+      <div className="flex w-full h-[58vh] p-8 gap-6 justify-center items-center bg-[#FAF9F6]">
+        <Card className="relative rounded-xl w-[450px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Feature</h2>
+          </div>
+        </Card>
+        
+        <Card className="relative rounded-xl w-[450px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Feature</h2>
+          </div>
+        </Card>
 
-      <Box display="flex" width="100vw" height="50vh" bgcolor="#f5f5f5">
-        <Typography level="h2">User Reviews</Typography>
-      </Box>
+        <Card className="relative rounded-xl w-[450px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Feature</h2>
+          </div>
+        </Card>
+      </div>
 
-      <Box display="flex" width="100vw" height="40vh" bgcolor="#f5f5f5">
-        <Typography level="h2">Footer</Typography>
-      </Box>
-    </Box>
+      
+
+      <div className="flex w-full h-[40vh] bg-[#FAF9F6] pt-10 justify-center items-center relative">
+        <h2 className="text-4xl font-semibold mb-[20vh]">Find Packages Now</h2>
+        <div className="absolute w-[35%] h-8 bg-[#d1cfc9] rounded-full flex items-center px-4">
+          <img
+            className="w-5 h-5"
+            src="search_icon.png"
+            alt=""
+          />
+          <Input className="outline-none border-none p-3">
+          </Input>
+        </div>
+      </div>
+
+      <div className="flex w-full h-[80vh] bg-[#FAF9F6] pt-7 gap-6 justify-center items-center">
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Review</h2>
+          </div>
+        </Card>
+        
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Review</h2>
+          </div>
+        </Card>
+
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <h2 className="text-white font-bold text-lg">Review</h2>
+          </div>
+        </Card>
+      </div>
+
+      <div className="flex w-full h-[40vh] bg-[#FAF9F6]">
+        <h2 className="text-2xl font-semibold">Footer</h2>
+      </div>
+    </div>
   );
 }
