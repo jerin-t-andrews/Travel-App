@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function Navbar() {
     return(
-        <div className="fixed w-full flex justify-between items-center bg-[#f5f5f5] px-2 py-0 h-[60px] z-[99]">
+        <div className="fixed w-full flex justify-between items-center bg-[#FAF9F6] px-2 py-0 h-[60px] z-[99]">
             <div className="flex-shrink-0">
                 <img
                     src="TravelLogo.svg"

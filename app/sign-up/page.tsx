@@ -23,7 +23,7 @@ export default function Register() {
                 `}</style>
             </div>
             <div className="w-[40vw] h-screen flex flex-col justify-center items-center">
-                <Button asChild variant="outline" size="icon" className="absolute mb-[92vh] mr-[35vw]">
+                <Button asChild variant="outline" size="icon" className="absolute w-8 h-8 mb-[92vh] mr-[35vw]">
                     <Link href="/" className="flex items-center"> 
                         <ChevronLeft className="h-6 w-6"/> 
                     </Link>
