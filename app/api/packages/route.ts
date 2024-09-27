@@ -2,10 +2,10 @@ import { NextResponse, NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
     // parse query
-    const { query, radius } = await request.json();
+    const { query} = await request.json();
 
     // Make sure all necessary query parameters exist
-    if (!query || !radius) {
+    if (!query) {
         return NextResponse.json({error: "Missing required params: query and radius"}, {status: 400})
     }
 
@@ -33,6 +33,8 @@ export async function POST(request: NextRequest) {
         });
 
         const data = await response.json();
+
+        // Perform Graph Creation and A* Algorithm
         
         if(!response.ok) {
             return NextResponse.json(data, { status: response.status });
