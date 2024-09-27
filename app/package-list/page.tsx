@@ -19,7 +19,7 @@ export default function PackageList() {
                 headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ query: "tourist places in " + search }), // Send the search term to the API
+                body: JSON.stringify({ query: search }), // Send Location for the API (API will get all relevant data and form graph)
             });
         
             if (!response.ok) {
@@ -37,7 +37,7 @@ export default function PackageList() {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            // handleSearch();
+            //handleSearch();
         }
     };
 
@@ -62,7 +62,7 @@ export default function PackageList() {
                 <p className="text-black">{search}</p>
                 {loading && <LoadingSpinner className="ml-[50vw]"/>}
                 {/* {loading && <p className="text-black">Loading...</p>} */}
-                {/* {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>} */}
+                {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>}
             </div>
         </div>
     )
