@@ -15,6 +15,7 @@ interface PlaceNode {
         latitude: number;
         longitude: number;
     };
+    photos: [];
     edges: Edge[];
 }
 
@@ -43,6 +44,7 @@ function createGraph(hotel: any, nearbyPlaces: any[]): PlaceNode[] {
         name: hotel.displayName.text,
         rating: hotel.rating,
         location: hotel.location,
+        photos: hotel.photos,
         edges: []
     };
     nodes.push(hotelNode);
@@ -54,6 +56,7 @@ function createGraph(hotel: any, nearbyPlaces: any[]): PlaceNode[] {
             name: place.displayName.text,
             rating: place.rating,
             location: place.location,
+            photos: place.photos,
             edges: []
         };
 
@@ -151,6 +154,7 @@ export async function POST(request: NextRequest) {
                     'places.priceLevel',
                     'places.rating',
                     'places.location',
+                    'places.photos',
                 ].join(','),
             },
             body: JSON.stringify({
@@ -186,8 +190,6 @@ export async function POST(request: NextRequest) {
 
         // Generate paths with the hotel as the root node
         const paths = createPaths(graph);
-
-        console.log(paths);
 
         // You can choose to not return the data if the search result is too specific and only gives one result (to avoid problems down the line)
         return NextResponse.json(paths);

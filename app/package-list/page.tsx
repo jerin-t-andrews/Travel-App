@@ -3,11 +3,28 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { LoadingSpinner } from "../components/spinner";
+import { Card } from "@/components/ui/card";
+
+interface ResultData {
+    id: string;
+    name: string;
+    rating: number;
+    location: {
+        latitude: number;
+        longitude: number;
+    };
+    photos: [];
+    edges: {
+        to: string;
+        distance: number;
+    }[];
+}
 
 export default function PackageList() {
     const [search, setSearch] = useState("");
-    const [resultData, setResultData] = useState(null);
+    const [resultData, setResultData] = useState<ResultData[][]>([]);
     const [loading, setLoading] = useState(false);
+    const googleAPIKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string;
 
     // Search Handler
     const handleSearch = async () => {
@@ -62,7 +79,28 @@ export default function PackageList() {
                 <p className="text-black">{search}</p>
                 {loading && <LoadingSpinner className="ml-[50vw]"/>}
                 {/* {loading && <p className="text-black">Loading...</p>} */}
-                {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>}
+                {/* {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>} */}
+                {resultData ? (
+                    resultData.map((package_list, package_index) => (
+                        <div key={package_index} className="flex justify-center items-center gap-8 py-10">
+                            {package_list.map((object) => (
+                                // {style={{ backgroundImage: `url('https://maps.googleapis.com/maps/api/place/photo?photoreference=${}&sensor=false&maxheight=${}&maxwidth=${}&key=${}')` }}}
+                                <Card className="relative rounded-xl w-[250px] h-[250px] bg-cover bg-center" >
+                                    <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex-col justify-center items-center">
+                                        <h2 className="text-white font-bold text-md">{object.name}</h2>
+                                        {(object.photos) ? (
+                                            <div>
+                                                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object.photos[0].name.slice(42)}&key=${googleAPIKey}`}/>
+                                            </div>
+                                        ) : (<p>No Image</p>)}
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    ))
+                ) : (
+                    !loading && <p>No results found</p>
+                )}
             </div>
         </div>
     )
