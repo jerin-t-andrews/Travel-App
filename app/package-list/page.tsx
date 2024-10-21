@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { LoadingSpinner } from "../components/spinner";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 interface ResultData {
     id: string;
@@ -73,7 +74,7 @@ export default function PackageList() {
                         onKeyDown={handleKeyDown}
                     />
                 </div>
-                <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the country or city you want to visit</h3>
+                <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the city you want to visit</h3>
             </div>
             <div className="flex-col w-full h-full">
                 <p className="text-black">{search}</p>
@@ -82,20 +83,30 @@ export default function PackageList() {
                 {/* {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>} */}
                 {resultData ? (
                     resultData.map((package_list, package_index) => (
-                        <div key={package_index} className="flex justify-center items-center gap-8 py-10">
+                        <div key={package_index} className="flex justify-center items-center gap-5 py-10">
                             {package_list.map((object) => (
                                 // {style={{ backgroundImage: `url('https://maps.googleapis.com/maps/api/place/photo?photoreference=${}&sensor=false&maxheight=${}&maxwidth=${}&key=${}')` }}}
                                 <Card className="relative rounded-xl w-[250px] h-[250px] bg-cover bg-center" >
-                                    <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex-col justify-center items-center">
-                                        <h2 className="text-white font-bold text-md">{object.name}</h2>
-                                        {(object.photos) ? (
-                                            <div>
-                                                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object.photos[0].name.slice(42)}&key=${googleAPIKey}`}/>
+                                    <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex flex-col justify-between items-center py-2">
+                                        <h2 className="text-white font-bold text-md text-center overflow-hidden text-ellipsis whitespace-nowrap max-w-full">{object.name}</h2>
+                                        {(object && object.photos) ? (
+                                            <div className="flex justify-center items-center">
+                                                <img 
+                                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object.photos[0].name.slice(42)}&key=${googleAPIKey}`}
+                                                    className="w-[230px] h-[200px] object-cover rounded-lg"
+                                                    alt={object.name}
+                                                />
                                             </div>
                                         ) : (<p>No Image</p>)}
                                     </div>
                                 </Card>
                             ))}
+                            <Button 
+                                variant="outline" 
+                                className="rounded-xl hover:bg-gray-200 active:bg-gray-300 transition-colors duration-200 ease-in-out"
+                                >
+                                +
+                            </Button>
                         </div>
                     ))
                 ) : (
