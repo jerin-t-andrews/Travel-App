@@ -4,9 +4,35 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
-
+import supabase from "../../supabase"
+import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const router = useRouter();
+
+    // Sign Up Supabase Connection
+    const handleSignUp = async(email: string, password: string) => {
+        try {
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+            });
+    
+            if (error) {
+                console.error('Sign-up error:', error.message);
+                alert(`Sign-up error: ${error.message}`);
+            } else {
+                console.log('Sign-up successful:', data);
+                router.push("/");
+            }
+        } catch (err) {
+            console.error('Error during sign-up:', err);
+        }
+    }
+
     return(
         <div className="w-full h-screen bg-[#FAF9F6] flex">
             <div className="w-[60vw] h-screen flex justify-center items-center bg-gradient-to-br from-[#014000] via-[#4c7041] to-[#23d5ab] animate-moveGradient"> 
@@ -35,14 +61,19 @@ export default function Register() {
                     <Input
                         placeholder="Email"
                         className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
+                        onChange={(e) => setEmail(e.target.value)}
                     />
 
                     <Input
                         placeholder="Password"
                         className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <Button className="w-[50%] p-2 mt-3 rounded-[8px] bg-[#e0e0e0] transition-all duration-300 hover:bg-[#d0d0d0] hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] active:bg-[#c0c0c0] active:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+                    <Button 
+                        className="w-[50%] p-2 mt-3 rounded-[8px] bg-[#e0e0e0] transition-all duration-300 hover:bg-[#d0d0d0] hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] active:bg-[#c0c0c0] active:shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                        onClick={() => handleSignUp(email, password)}
+                    >
                         Sign Up
                     </Button>
                 </div>
