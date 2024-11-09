@@ -7,9 +7,9 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-        const check = (await supabase.auth.getSession()).data.session?.user
-        setData(check!.email as string);
-    };
+            const check = (await supabase.auth.getSession()).data.session?.user
+            setData(check!.email as string);
+        };
         fetchData();
     }, []);
     
