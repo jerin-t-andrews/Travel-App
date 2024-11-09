@@ -11,15 +11,34 @@ import { useRouter } from 'next/navigation'
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [first, setFirst] = useState("");
+    const [last, setLast] = useState("");
+
     const router = useRouter();
 
     // Sign Up Supabase Connection
-    const handleSignUp = async(email: string, password: string) => {
+    const handleSignUp = async(email: string, password: string, username: string, first: string, last: string) => {
         try {
+            // Using auth schema
+            // const { data, error } = await supabase.auth.signUp({
+            //     email: email,
+            //     password: password,
+
+            // });
+
+            // Using Public Schema
             const { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password,
-            });
+                options: {
+                    data: {
+                        first_name: first,
+                        last_name: last,
+                        username: username,
+                    },
+                },
+            })
     
             if (error) {
                 console.error('Sign-up error:', error.message);
@@ -59,11 +78,28 @@ export default function Register() {
                         Sign Up
                     </h1>
                     <Input
+                        placeholder="Username"
+                        className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+
+                    <Input
                         placeholder="Email"
                         className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    
+                    <Input
+                        placeholder="First Name"
+                        className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
+                        onChange={(e) => setFirst(e.target.value)}
+                    />
 
+                    <Input
+                        placeholder="Last Name"
+                        className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
+                        onChange={(e) => setLast(e.target.value)}
+                    />
                     <Input
                         placeholder="Password"
                         className="w-[50%] p-2 rounded-[8px] bg-[#F7F7F7] border border-[#E0E0E0] transition-all duration-300 hover:border-[#B0B0B0] focus:border-[#000000] focus:shadow-[0_0_5px_rgba(0,0,0,0.5)] outline-none"
@@ -72,7 +108,7 @@ export default function Register() {
 
                     <Button 
                         className="w-[50%] p-2 mt-3 rounded-[8px] bg-[#e0e0e0] transition-all duration-300 hover:bg-[#d0d0d0] hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] active:bg-[#c0c0c0] active:shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
-                        onClick={() => handleSignUp(email, password)}
+                        onClick={() => handleSignUp(email, password, username, first, last)}
                     >
                         Sign Up
                     </Button>
