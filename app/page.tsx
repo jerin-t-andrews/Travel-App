@@ -1,9 +1,11 @@
+'use client'
 import Image from "next/image";
 
 import Navbar from "./components/navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import supabase from "../supabase"
+import { useRouter } from 'next/navigation'
 
 import {
   Card,
@@ -14,8 +16,19 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 export default function Home() {
+  const [search, setSearch] = useState("")
+  const router = useRouter()
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+        e.preventDefault()
+        const url = `/package-list?loc=${encodeURIComponent(search)}`;
+        router.push(url)
+    }
+  };  
 
   return (
     <div>
@@ -73,8 +86,11 @@ export default function Home() {
             src="search_icon.png"
             alt=""
           />
-          <Input className="outline-none border-none p-3">
-          </Input>
+          <Input className="outline-none border-none p-3" 
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the city you want to visit</h3>
         </div>
       </div>
 

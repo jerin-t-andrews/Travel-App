@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { LoadingSpinner } from "../components/spinner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 
 interface ResultData {
     id: string;
@@ -27,8 +28,11 @@ export default function PackageList() {
     const [loading, setLoading] = useState(false);
     const googleAPIKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string;
 
+    const searchParams = useSearchParams()
+    const loc = searchParams.get("loc")
+    
     // Search Handler
-    const handleSearch = async () => {
+    const handleSearch = async (search: string) => {
         setLoading(true); // You can add a loading icon animation thing for this
 
         try {
@@ -55,9 +59,23 @@ export default function PackageList() {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            handleSearch();
+            handleSearch(search);
         }
     };
+
+    // Don't run like this, causes infinite loop of sending api requests
+    // if (loc != undefined) {
+    //     setSearch(loc)
+    //     handleSearch()
+    // }
+
+    useEffect(() => {
+        if (loc) {
+            setSearch(loc);
+            console.log(loc);
+            handleSearch(loc);
+        }
+    }, [loc]);
 
     return (
         <div>
@@ -73,6 +91,7 @@ export default function PackageList() {
                         onChange={(e) => setSearch(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
+                    
                 </div>
                 <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the city you want to visit</h3>
             </div>
