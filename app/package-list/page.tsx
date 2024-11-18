@@ -63,12 +63,6 @@ export default function PackageList() {
         }
     };
 
-    // Don't run like this, causes infinite loop of sending api requests
-    // if (loc != undefined) {
-    //     setSearch(loc)
-    //     handleSearch()
-    // }
-
     useEffect(() => {
         if (loc) {
             setSearch(loc);
