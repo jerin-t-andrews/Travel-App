@@ -6,6 +6,7 @@ import { LoadingSpinner } from "../components/spinner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useSearchParams } from "next/navigation";
+import supabase from '../../supabase';
 
 interface ResultData {
     id: string;
@@ -57,6 +58,36 @@ export default function PackageList() {
         }
     }
 
+    async function updateSavedPackages() {
+        var check = undefined;
+        try {
+            check = await (await supabase.auth.getSession()).data.session?.user;
+            console.log(check?.id);
+        } catch(error) {
+            console.error('Error fetching user state:', error)
+        }
+
+        try {
+            const response = await fetch('/api/update-profile', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({user_id: check?.id})
+            });
+        
+            if (!response.ok) {
+                throw new Error('Failed to update profiles');
+            }
+            console.log("Working");
+            const data = await response.json()
+            // console.log(data);
+            console.log("fin");
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
+    }
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             handleSearch(search);
@@ -105,7 +136,7 @@ export default function PackageList() {
                                         {(object && object.photos) ? (
                                             <div className="flex justify-center items-center">
                                                 <img 
-                                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object.photos[0].name.slice(42)}&key=${googleAPIKey}`}
+                                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object?.photos[0].name.slice(42)}&key=${googleAPIKey}`}
                                                     className="w-[230px] h-[200px] object-cover rounded-lg"
                                                     alt={object.name}
                                                 />
@@ -117,6 +148,8 @@ export default function PackageList() {
                             <Button 
                                 variant="outline" 
                                 className="rounded-xl hover:bg-gray-200 active:bg-gray-300 transition-colors duration-200 ease-in-out"
+                                // onClick={()=>{console.log(package_index)}}
+                                onClick={updateSavedPackages}
                                 >
                                 +
                             </Button>

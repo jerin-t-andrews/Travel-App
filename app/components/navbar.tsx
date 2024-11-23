@@ -12,8 +12,8 @@ export default function Navbar() {
     useEffect(() => {
         const fetchData = async () => {
             const check = (await supabase.auth.getSession()).data.session?.user
-            // console.log("meta")
-            // console.log(check?.user_metadata);
+            console.log("meta")
+            console.log(check?.user_metadata);
             // console.log(check?.user_metadata.username)
             setData(check?.user_metadata);
         };
