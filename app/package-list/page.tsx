@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { LoadingSpinner } from "../components/spinner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
+import supabase from '../../supabase';
 
 interface ResultData {
     id: string;
@@ -27,8 +29,11 @@ export default function PackageList() {
     const [loading, setLoading] = useState(false);
     const googleAPIKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string;
 
+    const searchParams = useSearchParams()
+    const loc = searchParams.get("loc")
+    
     // Search Handler
-    const handleSearch = async () => {
+    const handleSearch = async (search: string) => {
         setLoading(true); // You can add a loading icon animation thing for this
 
         try {
@@ -53,11 +58,49 @@ export default function PackageList() {
         }
     }
 
+    async function updateSavedPackages(index: number) {
+        const selected_package = resultData[index]
+
+        var check = undefined;
+        try {
+            check = await (await supabase.auth.getSession()).data.session?.user;
+            console.log(check?.id);
+        } catch(error) {
+            console.error('Error fetching user state:', error)
+        }
+
+        try {
+            const response = await fetch('/api/update-profile', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({user_id: check?.id, new_package: selected_package})
+            });
+        
+            if (!response.ok) {
+                throw new Error('Failed to update profiles');
+            }
+
+            const data = await response.json()
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
+    }
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            handleSearch();
+            handleSearch(search);
         }
     };
+
+    useEffect(() => {
+        if (loc) {
+            setSearch(loc);
+            console.log(loc);
+            handleSearch(loc);
+        }
+    }, [loc]);
 
     return (
         <div>
@@ -73,6 +116,7 @@ export default function PackageList() {
                         onChange={(e) => setSearch(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
+                    
                 </div>
                 <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the city you want to visit</h3>
             </div>
@@ -92,7 +136,7 @@ export default function PackageList() {
                                         {(object && object.photos) ? (
                                             <div className="flex justify-center items-center">
                                                 <img 
-                                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object.photos[0].name.slice(42)}&key=${googleAPIKey}`}
+                                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object?.photos[0]?.name.slice(42)}&key=${googleAPIKey}`}
                                                     className="w-[230px] h-[200px] object-cover rounded-lg"
                                                     alt={object.name}
                                                 />
@@ -104,6 +148,8 @@ export default function PackageList() {
                             <Button 
                                 variant="outline" 
                                 className="rounded-xl hover:bg-gray-200 active:bg-gray-300 transition-colors duration-200 ease-in-out"
+                                // onClick={()=>{console.log(package_index)}}
+                                onClick={() => updateSavedPackages(package_index)}
                                 >
                                 +
                             </Button>

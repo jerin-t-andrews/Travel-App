@@ -190,7 +190,6 @@ export async function POST(request: NextRequest) {
 
         // Generate paths with the hotel as the root node
         const paths = createPaths(graph);
-
         // You can choose to not return the data if the search result is too specific and only gives one result (to avoid problems down the line)
         return NextResponse.json(paths);
 
