@@ -5,8 +5,11 @@ import { Input } from "@/components/ui/input"
 import { LoadingSpinner } from "../components/spinner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import { useSearchParams } from "next/navigation";
 import supabase from '../../supabase';
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
 
 interface ResultData {
     id: string;
@@ -83,6 +86,7 @@ export default function PackageList() {
             }
 
             const data = await response.json()
+            toast("Package saved!")
         } catch (error) {
             console.error('Error updating data:', error);
         }
@@ -105,6 +109,11 @@ export default function PackageList() {
     return (
         <div>
             <div className="flex w-full h-[40vh] bg-[#FAF9F6] pt-10 justify-center items-center relative">
+                <Button asChild variant="outline" size="icon" className="absolute w-8 h-8 mr-[95vw] mb-[35vh]">
+                    <Link href="/" className="flex items-center"> 
+                        <ChevronLeft className="h-6 w-6"/> 
+                    </Link>
+                </Button>
                 <h2 className="text-4xl font-semibold mb-[20vh]">Find Packages Now</h2>
                 <div className="absolute w-[35%] h-8 bg-[#d1cfc9] rounded-full flex items-center px-4">
                     <img
