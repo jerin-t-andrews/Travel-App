@@ -16,17 +16,32 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [search, setSearch] = useState("")
   const router = useRouter()
 
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          const check = (await supabase.auth.getSession()).data.session?.user
+          setData(check?.user_metadata);
+      };
+      fetchData();
+  }, []);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-        e.preventDefault()
-        const url = `/package-list?loc=${encodeURIComponent(search)}`;
-        router.push(url)
+        if (data) {
+          e.preventDefault()
+          const url = `/package-list?loc=${encodeURIComponent(search)}`;
+          router.push(url)
+        } else {
+          const url = `/sign-in`;
+          router.push(url)
+        }
     }
   };  
 
