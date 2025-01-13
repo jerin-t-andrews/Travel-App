@@ -73,7 +73,7 @@ export default function PackageList() {
         }
 
         try {
-            const response = await fetch('/api/update-profile', {
+            const response = await fetch('/api/add-package', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -82,10 +82,9 @@ export default function PackageList() {
             });
         
             if (!response.ok) {
-                throw new Error('Failed to update profiles');
+                throw new Error('Failed to add package');
             }
 
-            const data = await response.json()
             toast("Package saved!")
         } catch (error) {
             console.error('Error updating data:', error);
@@ -130,7 +129,6 @@ export default function PackageList() {
                 <h3 className="absolute text-orange-500 text-xs font-medium mt-[10vh]">*Enter the name of the city you want to visit</h3>
             </div>
             <div className="flex-col w-full h-full">
-                <p className="text-black">{search}</p>
                 {loading && <LoadingSpinner className="ml-[50vw]"/>}
                 {/* {loading && <p className="text-black">Loading...</p>} */}
                 {/* {resultData && <p className="text-black">{JSON.stringify(resultData)}</p>} */}

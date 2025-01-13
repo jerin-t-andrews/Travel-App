@@ -5,9 +5,11 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import Link from "next/link";
 import supabase from '../../supabase';
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
     const [data, setData] = useState<any>(null);
+    const router = useRouter()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +47,7 @@ export default function Navbar() {
                 />  
             </div>
             <div className="flex justify-center items-center absolute left-1/2 transform -translate-x-1/2 flex-grow">
-                <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">About</Button>
+                {/* <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">About</Button>
                 <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">Trips</Button>
                 <Button variant="ghost" className="bg-transparent text-neutral-700 h-[60px] px-4">Review</Button>
                 <DropdownMenu>
@@ -57,11 +59,22 @@ export default function Navbar() {
                         <DropdownMenuItem>Item 2</DropdownMenuItem>
                         <DropdownMenuItem>Item 3</DropdownMenuItem>
                     </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
             </div>
             {data ? (
                 <div className="flex flex-row gap-4 items-center">
-                    <p>Welcome {data.first_name}!</p>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" className="bg-transparent text-neutral-700 h-[60px] px-4">Welcome {data.first_name}!</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="bg-white shadow-md p-2">
+                        <DropdownMenuItem>
+                            <Button onClick={() => {router.push("/dashboard")}}>
+                                <p>Dashboard</p>
+                            </Button>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
                     <Button className="border-neutral-700 border-[1.5px] rounded-lg text-neutral-700 mx-1 px-4 py-1"
                         onClick={handleLogout}
                     >
