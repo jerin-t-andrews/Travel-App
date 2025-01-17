@@ -63,6 +63,15 @@ export default function Navbar() {
             </div>
             {data ? (
                 <div className="flex flex-row gap-4 items-center">
+                    <Button className="border-neutral-700 border-[1.5px] rounded-lg text-neutral-700 mx-1 px-4 py-1"
+                        onClick={()=>{router.push("/package-list");}}
+                        >
+                        <img
+                            src="search_icon.png"
+                            alt="search"
+                            className="w-[20px] h-[20px]"
+                        />
+                    </Button>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" className="bg-transparent text-neutral-700 h-[60px] px-4">Welcome {data.first_name}!</Button>

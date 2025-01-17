@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 import supabase from '../../supabase';
 import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
+import Navbar from "../components/navbar";
 
 interface ResultData {
     id: string;
@@ -148,7 +149,15 @@ export default function PackageList() {
                                                     alt={object.name}
                                                 />
                                             </div>
-                                        ) : (<p>No Image</p>)}
+                                        ) : (
+                                            <div className="flex justify-center items-center">
+                                                <img
+                                                    src="hotel_icon.png"
+                                                    className="w-[150px] h-[150px] object-cover rounded-lg"
+                                                    alt={object.name}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </Card>
                             ))}
