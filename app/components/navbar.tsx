@@ -7,7 +7,11 @@ import supabase from '../../supabase';
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation'
 
-export default function Navbar() {
+interface NavbarProps {
+    fixed?: boolean;
+}
+
+export default function Navbar({ fixed = true }: NavbarProps) {
     const [data, setData] = useState<any>(null);
     const router = useRouter()
 
@@ -38,7 +42,7 @@ export default function Navbar() {
     }
 
     return(
-        <div className="fixed w-full flex justify-between items-center bg-[#FAF9F6] px-2 py-0 h-[60px] z-[99]">
+        <div className={`w-full flex justify-between items-center bg-[#FAF9F6] px-2 py-0 h-[60px] z-[99] ${fixed ? 'fixed' : 'relative'}`}>
             <div className="flex-shrink-0">
                 <img
                     src="TravelLogo.svg"

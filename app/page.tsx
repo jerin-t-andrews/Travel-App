@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import supabase from "../supabase"
 import { useRouter } from 'next/navigation'
+import Star from "@/components/ui/star";
 
 import {
   Card,
@@ -74,19 +75,19 @@ export default function Home() {
       <div className="flex w-full h-[58vh] p-8 gap-6 justify-center items-center bg-[#FAF9F6]">
         <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
           <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-3xl mb-14">Feature</h2>
+            <h2 className="text-white font-bold text-3xl mb-14">Search</h2>
           </div>
         </Card>
         
         <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/feature_image_4.jpg')" }}>
           <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-3xl mb-14">Feature</h2>
+            <h2 className="text-white font-bold text-3xl mb-14">Save</h2>
           </div>
         </Card>
 
         <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/feature_image_3.jpg')" }}>
           <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-3xl mb-14">Feature</h2>
+            <h2 className="text-white font-bold text-3xl mb-14">Travel</h2>
           </div>
         </Card>
       </div>
@@ -110,21 +111,84 @@ export default function Home() {
       </div>
 
       <div className="flex w-full h-[80vh] bg-[#FAF9F6] pt-7 gap-6 justify-center items-center">
-        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-lg">Review</h2>
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-[#ececec] border-transparent">
+          <div className="absolute rounded-xl inset-0 flex flex-col items-center">
+            <div className="flex flex-row w-full h-[40%] items-center">
+              <img
+                src="question_guy.jpg"
+                alt="person"
+                className="rounded-full w-[100px] h-[150px] object-cover ml-6"
+              />
+            </div>
+            <div className="flex flex-col w-full h-[30%] items-center gap-3">
+              <h2 className="text-black font-bold text-lg">"Travel Planning Made Simple"</h2>
+              <h4 className="text-gray-700 text-base px-7">
+                "I’ve always found travel planning overwhelming, but this website changed everything. In just a few clicks, I had a complete plan ready, including hotels and top-rated attractions."
+              </h4>
+            </div>
+            <div className="flex flex-row w-full justify-center mt-10"> 
+              <div className="flex gap-1">
+                <Star viewOnly filled rating={1}/>
+                <Star viewOnly filled rating={2}/>
+                <Star viewOnly filled rating={3}/>
+                <Star viewOnly filled rating={4}/>
+                <Star viewOnly filled rating={5}/>
+              </div>
+            </div>
           </div>
         </Card>
         
-        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-lg">Review</h2>
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-[#ececec] border-transparent">
+          <div className="absolute rounded-xl inset-0 flex flex-col items-center">
+            <div className="flex flex-row w-full h-[40%] items-center">
+              <img
+                src="guy_image.jpg"
+                alt="person"
+                className="rounded-full w-[125px] h-[125px] object-cover object-center ml-6"
+              />
+            </div>
+            <div className="flex flex-col w-full h-[30%] items-center gap-3">
+              <h2 className="text-black font-bold text-lg">"Perfect for Last-Minute Trips!"</h2>
+              <h4 className="text-gray-700 text-base px-7">
+                "I needed a quick getaway, and this site planned everything seamlessly! The travel packages were well-organized, and I loved the recommended attractions. Will definitely use it again!"
+              </h4>
+            </div>
+            <div className="flex flex-row w-full justify-center mt-10"> 
+              <div className="flex gap-1">
+                <Star viewOnly filled rating={1}/>
+                <Star viewOnly filled rating={2}/>
+                <Star viewOnly filled rating={3}/>
+                <Star viewOnly filled rating={4}/>
+                <Star viewOnly filled rating={5}/>
+              </div>
+            </div>
           </div>
         </Card>
 
-        <Card className="relative rounded-xl w-[450px] h-[500px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-            <h2 className="text-white font-bold text-lg">Review</h2>
+        <Card className="relative rounded-xl w-[450px] h-[500px] bg-[#ececec] border-transparent">
+          <div className="absolute rounded-xl inset-0 flex flex-col items-center">
+            <div className="flex flex-row w-full h-[40%] items-center">
+              <img
+                src="woman_headshot.jpg"
+                alt="person"
+                className="rounded-full w-[150px] h-[100px] object-cover ml-6"
+              />
+            </div>
+            <div className="flex flex-col w-full h-[30%] items-center gap-3">
+              <h2 className="text-black font-bold text-lg">"Incredible User Experience"</h2>
+              <h4 className="text-gray-700 text-base px-7">
+                "The interface is super intuitive, and the recommendations felt like they were curated just for me. I saved so much time and discovered hidden gems on my trip!"
+              </h4>
+            </div>
+            <div className="flex flex-row w-full justify-center mt-10"> 
+              <div className="flex gap-1">
+                <Star viewOnly filled rating={1}/>
+                <Star viewOnly filled rating={2}/>
+                <Star viewOnly filled rating={3}/>
+                <Star viewOnly filled rating={4}/>
+                <Star viewOnly filled rating={5}/>
+              </div>
+            </div>
           </div>
         </Card>
       </div>
