@@ -193,8 +193,39 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="flex justify-center w-full h-[30vh] bg-[#FAF9F6]">
-        <h2 className="text-2xl font-semibold">Footer</h2>
+      <div className="flex justify-between items-center w-full h-[20vh] bg-[#8fbda5]">
+        <div className="flex flex-col h-full justify-center items-center px-5">
+          <img
+            src="TravelLogo.svg"
+            alt="Logo"
+            className="w-[75px] h-[75px]"
+          />
+          <h1 className="font-bold">
+            Voyagr
+          </h1>
+        </div>
+        <div className="flex h-full justify-center items-center">
+          <Button onClick={()=>{
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }}>
+            <h2 className="text-xl font-light">Back to Top</h2>
+          </Button>
+        </div>
+        <div className="flex flex-col h-full justify-center items-center px-5">
+          <h2>Contact Me</h2>
+          <Link target="_blank" href="https://www.linkedin.com/in/jerin-t-andrews/">
+            <Button>
+              <img
+                src="linkedin_logo.png"
+                alt="LinkedIn"
+                className="w-[30px] h-[30px]"
+              />
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -127,7 +127,8 @@ export default function Dashboard() {
                                     <h2 className="text-white font-bold text-xs text-center overflow-hidden text-ellipsis whitespace-nowrap max-w-full">{object.name}</h2>
                                     {(object && object.photos) ? (
                                         <div className="flex justify-center items-center">
-                                            <img 
+                                            <img
+                                                // @ts-expect-error 
                                                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object?.photos[0]?.name.slice(42)}&key=${googleAPIKey}`}
                                                 className="w-[200px] h-[170px] object-cover rounded-lg"
                                                 alt={object.name}

@@ -146,6 +146,7 @@ export default function PackageList() {
                                             {(object && object.photos) ? (
                                                 <div className="flex justify-center items-center">
                                                     <img 
+                                                        // @ts-expect-error
                                                         src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${object?.photos[0]?.name.slice(42)}&key=${googleAPIKey}`}
                                                         className="w-[230px] h-[200px] object-cover rounded-lg"
                                                         alt={object.name}
