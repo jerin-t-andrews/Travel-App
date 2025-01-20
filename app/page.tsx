@@ -73,21 +73,24 @@ export default function Home() {
       </div>
 
       <div className="flex w-full h-[58vh] p-8 gap-6 justify-center items-center bg-[#FAF9F6]">
-        <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/chin_tour.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+        <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/china_feature.png')" }}>
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center">
             <h2 className="text-white font-bold text-3xl mb-14">Search</h2>
+            <h2 className="text-white font-extralight text-base px-16 text-center">Search to create packages from 200+ million locations around the world</h2>
           </div>
         </Card>
         
         <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/feature_image_4.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center">
             <h2 className="text-white font-bold text-3xl mb-14">Save</h2>
+            <h2 className="text-white font-extralight text-base px-16 text-center">Save your favorite travel packages and access them anytime</h2>
           </div>
         </Card>
 
         <Card className="relative rounded-xl w-[475px] h-[400px] bg-cover bg-center" style={{ backgroundImage: "url('/feature_image_3.jpg')" }}>
-          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+          <div className="absolute rounded-xl inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-center">
             <h2 className="text-white font-bold text-3xl mb-14">Travel</h2>
+            <h2 className="text-white font-extralight text-base px-16 text-center">Turn your dream itinerary into reality with personalized travel plans</h2>
           </div>
         </Card>
       </div>
