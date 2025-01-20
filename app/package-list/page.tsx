@@ -11,6 +11,7 @@ import supabase from '../../supabase';
 import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
 import Navbar from "../components/navbar";
+import { Suspense } from 'react'
 
 interface ResultData {
     id: string;
@@ -109,6 +110,7 @@ export default function PackageList() {
     return (
         <div>
             <Navbar/>
+            <Suspense fallback={<div>Loading search parameters...</div>}>
             <div className="pt-[60px]">
                 <div className="flex w-full h-[40vh] bg-[#FAF9F6] pt-10 justify-center items-center relative">
                     <Button asChild variant="outline" size="icon" className="absolute w-8 h-8 mr-[95vw] mb-[35vh]">
@@ -179,6 +181,7 @@ export default function PackageList() {
                     )}
                 </div>
             </div>
+            </Suspense>
         </div>
         
     )
